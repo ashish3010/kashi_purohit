@@ -2,9 +2,16 @@ type SectionHeadingProps = {
   eyebrow: string;
   title: string;
   titleClassName?: string;
+  /** Optional supporting line under the title (used on wider layouts). */
+  description?: string;
 };
 
-export function SectionHeading({ eyebrow, title, titleClassName = "" }: SectionHeadingProps) {
+export function SectionHeading({
+  eyebrow,
+  title,
+  titleClassName = "",
+  description,
+}: SectionHeadingProps) {
   return (
     <div className="mb-8 text-center">
       <div className="mb-3 flex items-center justify-center gap-3">
@@ -19,6 +26,11 @@ export function SectionHeading({ eyebrow, title, titleClassName = "" }: SectionH
       >
         {title}
       </h2>
+      {description ? (
+        <p className="mx-auto mt-4 max-w-3xl text-sm leading-relaxed text-kashi-brown/80 md:text-base">
+          {description}
+        </p>
+      ) : null}
     </div>
   );
 }

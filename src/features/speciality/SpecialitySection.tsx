@@ -1,13 +1,10 @@
-import { specialityStats } from "@/features/speciality/speciality.data";
+import type { SiteCopy } from "@/lib/site-locale";
 
-const description =
-  "Pandit Prashant Shukla has a team of Qualified, Knowledgeable and Experienced Pandits who perform Pujas as per your community, language and region specifications. We take care of the entire process, right from booking and assigning the right Pandit, with best Muhurat, Puja Items, Puja Samagri, Flowers etc. All you need to do is to book the service, sit back and relax while we work on ensuring that you get a satisfying and divine Puja experience.";
-
-export function SpecialitySection() {
+export function SpecialitySection({ copy }: { copy: SiteCopy }) {
   return (
     <section
       id="speciality"
-      className="bg-kashi-red py-12 text-white md:py-16"
+      className="bg-kashi-red py-12 text-white md:hidden"
       aria-labelledby="speciality-heading"
     >
       <div className="mx-auto w-full max-w-lg px-6">
@@ -15,14 +12,16 @@ export function SpecialitySection() {
           id="speciality-heading"
           className="font-serif text-2xl font-semibold leading-snug text-white sm:text-3xl"
         >
-          Speciality Of Prashant Shukla Pandit Ji
+          {copy.speciality.heading}
         </h2>
 
-        <p className="mt-6 text-sm leading-relaxed text-white/95 sm:text-base">{description}</p>
+        <p className="mt-6 text-sm leading-relaxed text-white/95 sm:text-base">
+          {copy.speciality.longDescription}
+        </p>
 
         <div className="mt-12 grid grid-cols-2 gap-x-6 gap-y-10 sm:gap-x-10">
-          {specialityStats.map((stat) => (
-            <div key={stat.label} className="text-left">
+          {copy.speciality.stats.map((stat) => (
+            <div key={stat.id} className="text-left">
               <p className="font-serif text-4xl font-semibold leading-none text-[#5dd5ec] sm:text-5xl">
                 {stat.value}
               </p>

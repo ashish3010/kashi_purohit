@@ -12,6 +12,9 @@
   --color-kashi-charcoal: #2d2d2d;
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-serif: var(--font-playfair), ui-serif, Georgia, "Times New Roman", serif;
+
+  /* Treat viewports wider than 600px as “desktop” for all `md:` / `max-md:` utilities. */
+  --breakpoint-md: 37.5rem;
 }
 
 body {

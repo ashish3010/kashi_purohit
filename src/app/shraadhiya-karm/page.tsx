@@ -1,43 +1,48 @@
 import type { Metadata } from "next";
-import { SITE, SITE_LOGO_ALT, SITE_LOGO_PATH } from "@/config/site";
+import { SITE_LOGO_PATH } from "@/config/site";
 import { MobileSiteHeader } from "@/features/navigation/MobileSiteHeader";
 import { SiteFooter } from "@/features/navigation/SiteFooter";
 import { StickyActionBar } from "@/features/navigation/StickyActionBar";
 import { ShraadhiyaHashScroll } from "@/features/shraadhiya/ShraadhiyaHashScroll";
 import { ShraadhiyaKarmIntro, ShraadhiyaKarmSections } from "@/features/shraadhiya/ShraadhiyaKarmSections";
+import { getRequestSiteLocale, getSiteCopy } from "@/lib/site-locale";
 
-export const metadata: Metadata = {
-  title: "Shraadhiya Karm",
-  description:
-    "Gaya Pind, Varanasi Pind, Mrityuparant shradh, Shad Pind Daan, Dashgaatra, Ekadashaah, Dwadashah, Shaiyya Daan, Narayan Bali / Tripindi — full guidance in one place.",
-  alternates: { canonical: "/shraadhiya-karm" },
-  openGraph: {
-    title: `Shraadhiya Karm | ${SITE.name}`,
-    description:
-      "Gaya Pind, Varanasi Pind, Mrityuparant shradh, Shad Pind Daan, Dashgaatra, Ekadashaah, Dwadashah, Shaiyya Daan, Narayan Bali / Tripindi — full guidance in one place.",
-    url: "/shraadhiya-karm",
-    images: [{ url: SITE_LOGO_PATH, width: 512, height: 512, alt: SITE_LOGO_ALT }],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: `Shraadhiya Karm | ${SITE.name}`,
-    description:
-      "Gaya Pind, Varanasi Pind, Mrityuparant shradh, Shad Pind Daan, Dashgaatra, Ekadashaah, Dwadashah, Shaiyya Daan, Narayan Bali / Tripindi — full guidance in one place.",
-    images: [SITE_LOGO_PATH],
-  },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const copy = getSiteCopy(await getRequestSiteLocale());
+  const p = copy.pages.shraadhiya;
+  return {
+    title: p.title,
+    description: p.intro,
+    alternates: { canonical: "/shraadhiya-karm" },
+    openGraph: {
+      title: `${p.title} | ${copy.site.name}`,
+      description: p.intro,
+      url: "/shraadhiya-karm",
+      images: [{ url: SITE_LOGO_PATH, width: 512, height: 512, alt: copy.site.logoAlt }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${p.title} | ${copy.site.name}`,
+      description: p.intro,
+      images: [SITE_LOGO_PATH],
+    },
+  };
+}
 
-export default function ShraadhiyaKarmPage() {
+export default async function ShraadhiyaKarmPage() {
+  const locale = await getRequestSiteLocale();
+  const copy = getSiteCopy(locale);
+
   return (
     <div className="min-h-screen">
-      <MobileSiteHeader />
+      <MobileSiteHeader copy={copy} locale={locale} />
       <ShraadhiyaHashScroll />
       <main>
-        <ShraadhiyaKarmIntro />
-        <ShraadhiyaKarmSections />
-        <SiteFooter />
+        <ShraadhiyaKarmIntro copy={copy} />
+        <ShraadhiyaKarmSections copy={copy} />
+        <SiteFooter copy={copy} />
       </main>
-      <StickyActionBar />
+      <StickyActionBar copy={copy} />
     </div>
   );
 }

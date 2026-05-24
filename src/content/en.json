@@ -1,0 +1,373 @@
+{
+  "site": {
+    "name": "Kashi Purohit",
+    "tagline": "Traditional Vedic Ritual Services",
+    "description": "Traditional Vedic ritual services in Varanasi with Pandit Prashant Shukla at Naya Mahadev, Rajghat — hawan, karm kaand, sanskar, shraddha, vivah, Rudrabhishek, katha, and pitru karm.",
+    "logoAlt": "Kashi Purohit — Traditional Vedic Ritual Services logo with temple shikhara and bells",
+    "panditName": "Pandit Prashant Shukla"
+  },
+  "hero": {
+    "imageAlt": "Sunset aarti on the Ganges at Varanasi ghats — boats, lamps on the water, and historic riverfront architecture",
+    "headline": "Authentic Vedic Rituals in the Holy City of Kashi",
+    "subheadline": "Pandit Prashant Shukla provides expert spiritual guidance and puja services at Naya Mahadev, Rajghat.",
+    "scrollToAboutSr": "Scroll to about",
+    "scrollLabel": "Scroll"
+  },
+  "about": {
+    "profileImageAlt": "Pandit Prashant Shukla performing hawan — traditional ritual at Naya Mahadev, Varanasi",
+    "heading": "Pandit Prashant Shukla",
+    "subtitle": "Karmakandi Pandit — Naya Mahadev, Varanasi",
+    "quote": "Qualified, knowledgeable and experienced Pandits who perform pujas as per your community, language and region specifications.",
+    "contactSectionTitle": "Contact Information",
+    "phoneSupportLabel": "Phone Support",
+    "whatsappLabel": "WhatsApp",
+    "emailLabel": "Email Address",
+    "waDisplay": "93357 39640"
+  },
+  "speciality": {
+    "heading": "Speciality Of Prashant Shukla Pandit Ji",
+    "longDescription": "Pandit Prashant Shukla has a team of Qualified, Knowledgeable and Experienced Pandits who perform Pujas as per your community, language and region specifications. We take care of the entire process, right from booking and assigning the right Pandit, with best Muhurat, Puja Items, Puja Samagri, Flowers etc. All you need to do is to book the service, sit back and relax while we work on ensuring that you get a satisfying and divine Puja experience.",
+    "stats": [
+      {
+        "id": "experience",
+        "value": "25",
+        "label": "Years of experience"
+      },
+      {
+        "id": "hawanTypes",
+        "value": "150",
+        "label": "Types of hawan and pujan"
+      },
+      {
+        "id": "clientele",
+        "value": "500",
+        "label": "Clientele"
+      },
+      {
+        "id": "visitors",
+        "value": "115",
+        "label": "Hourly visitors"
+      }
+    ]
+  },
+  "services": {
+    "order": [
+      "hawan-pujan",
+      "karma-kaand",
+      "upnayan-sanskar",
+      "shaadi-vivah",
+      "kundali-dosh-pujan",
+      "rudrabhishek"
+    ],
+    "byId": {
+      "hawan-pujan": {
+        "category": "Vedic Fire Ritual",
+        "title": "Hawan Pujan",
+        "description": "Sacred fire rituals performed for prosperity, health, and spiritual cleansing of your home and family, with proper mantras and ahuti as per your tradition.",
+        "paragraphs": [
+          "While offering ahuti during havan, devotees often ask why we say “svaha.” Svaha means offering into the fire; each ahuti together with mantra recitation is meant to satisfy the devas and rishis.",
+          "In Vedic Hinduism, a homa, also called havan, is a fire ritual offered on auspicious days and for specific sankalpa—whether for grih pravesh, health, marriage, or yearly peace. A qualified purohit maintains consecrated fire and offers ghee, grains, and samagri with precise mantras from the Vedas and allied texts.",
+          "At Kashi Purohit, hawan is arranged with correct muhurat, clean samagri, and clear guidance in English, matched to your sampradaya. You may join in person in Varanasi or coordinate remotely with sankalpa and prasad options as discussed with Pandit ji."
+        ],
+        "imageAlt": "Hawan Pujan rituals"
+      },
+      "karma-kaand": {
+        "category": "Karma Kand Services",
+        "title": "Karma Kaand",
+        "description": "Complete karmakand and ritual services by qualified pandits—havan, paath, and ceremonies aligned with your community, language, and regional vidhi.",
+        "paragraphs": [
+          "Karmkand refers to ritual services performed by adhyayan-shrotriya pandits according to shruti–smriti and local paddhati. Dakshina supports the dharma of learning and teaching; the yajamana receives punya and order in life through correctly performed rites.",
+          "The Vedas are broadly studied as Karma Kand (ritual portion: Samhitas, Brahmanas, Purva Mimamsa) and Jnana Kand (knowledge portion: Aranyakas, Upanishads, Brahma Sutras). Karma Kand addresses devarchana, yajna, and sanskar; Jnana Kand points to Brahman and moksha.",
+          "We assist with naming ceremonies, shraddha, annual tarpan, temple pujas, and extended karmakand sequences. Tell us your gotra, veda-shakha preference if any, and region—we match the vidhi accordingly."
+        ],
+        "imageAlt": "Karma kaand ritual arrangement"
+      },
+      "upnayan-sanskar": {
+        "category": "Sacred Sanskar",
+        "title": "Upnayan Sanskar",
+        "description": "Traditional thread ceremony marking the beginning of Vedic study, with sacred yagyopavita and mantras conducted under auspicious muhurat.",
+        "paragraphs": [
+          "Upanayana is a principal samskara marking entrance to brahmacharya and Vedic study under a guru. The yagyopavita (janeu) is worn from the left shoulder across the chest; mantras and homa vary by region and community.",
+          "The ceremony includes shaving (optional by custom), maunji mekhala, instruction in sandhya and gayatri, and blessings from elders. Muhurat is chosen for stability and long-term learning.",
+          "Book a consultation for date, samagri list, and family participation. We respect regional and paddhati differences across Bharatavarsha."
+        ],
+        "imageAlt": "Upanayan sanskar ceremony"
+      },
+      "shaadi-vivah": {
+        "category": "Marriage & Vivah",
+        "title": "Shaadi Vivah",
+        "description": "Hindu wedding rituals from engagement to saptapadi—mantras, kanyadaan, and havan—performed with devotion so your union begins with divine blessings.",
+        "paragraphs": [
+          "Hindu vivah is a samskara uniting two families before Agni as witness. Core steps often include vara-puja, kanyadaan, hastmelap, mangal pheras (saptapadi), and ashirvachan—with regional additions like jaimala or custom vows.",
+          "Pandit ji helps align the lagna patrika with practical scheduling, havan requirements, and clear communication for both sides. Pre-wedding grih shanti or ganesh puja can be bundled on request.",
+          "Whether a simple temple ceremony or a fuller two-day program, we focus on clarity, dignity, and authentic mantra path so your day remains spiritually meaningful."
+        ],
+        "imageAlt": "Shaadi Vivah wedding ceremony"
+      },
+      "kundali-dosh-pujan": {
+        "category": "Jyotish & Remedies",
+        "title": "Kundali Dosh Pujan",
+        "description": "Guidance on birth-chart doshas and targeted pujas, jap, and daan to harmonise grahas and support peace, career, and relationships under Vedic astrology.",
+        "paragraphs": [
+          "A kundli maps grahas across twelve bhavas from the time and place of birth. Doshas such as Mangal dosh, Kaal Sarp, or Nadi are analysed not to create fear but to suggest proportionate shanti and ethical conduct.",
+          "Remedies may include specific pujas, mantra japa counts, daan on suitable days, and fasting where appropriate—all under muhurat and proportionate to the chart.",
+          "Share accurate birth data for initial review; in-person or remote sankalpa can be arranged after discussion with Pandit ji."
+        ],
+        "imageAlt": "Kundali dosh pujan"
+      },
+      "rudrabhishek": {
+        "category": "Shiva Puja",
+        "title": "Rudrabhishek",
+        "description": "Supreme Rudrabhishek with Rudram–Chamakam, panchamrit abhishek, and bilva offerings to invoke Lord Shiva’s grace, protection, and inner calm.",
+        "paragraphs": [
+          "Rudrabhishek is among the highest forms of Shiva archana: abhishek with panchamrit, gangajal, bel patra, and bilva while Rudram–Chamakam is recited with devotion.",
+          "Benefits traditionally include removal of obstacles, peace of mind, and family welfare when performed with shraddha and correct paddhati.",
+          "We perform at Naya Mahadev, Rajghat, or as arranged after consultation. Prasad and photo updates can be shared for remote families when agreed in advance."
+        ],
+        "imageAlt": "Rudrabhishek puja offerings"
+      }
+    },
+    "section": {
+      "eyebrow": "Ritual Excellence",
+      "title": "Our Divine Services"
+    }
+  },
+  "testimonials": {
+    "title": "Blessed Experiences",
+    "eyebrow": "Words from our devotees",
+    "items": [
+      {
+        "id": "1",
+        "initials": "VM",
+        "name": "Shri Vimal Kr Mishra",
+        "location": "Chhapra, Bihar",
+        "text": "Very authentic and peaceful experience. Pandit ji explained every step of the havan with patience."
+      },
+      {
+        "id": "2",
+        "initials": "RS",
+        "name": "Rohit Sharma",
+        "location": "Delhi NCR",
+        "text": "We booked services from abroad and everything was coordinated smoothly. Highly recommended."
+      },
+      {
+        "id": "3",
+        "initials": "AP",
+        "name": "Anjali Pandey",
+        "location": "Varanasi",
+        "text": "True Karmakandi vidhi. Our family has been taking guidance for years at Naya Mahadev."
+      }
+    ]
+  },
+  "navigation": {
+    "drawerTitle": "Menu",
+    "desktop": [
+      {
+        "href": "/#home",
+        "label": "Home"
+      },
+      {
+        "href": "/#about",
+        "label": "About Pandit Ji"
+      },
+      {
+        "href": "/karm-kaand-maanglik",
+        "label": "Karma Kaand"
+      },
+      {
+        "href": "/gallery",
+        "label": "Gallery"
+      },
+      {
+        "href": "/shraadhiya-karm",
+        "label": "Shraadhiya Karm"
+      },
+      {
+        "href": "/#contact",
+        "label": "Contact"
+      }
+    ],
+    "flatLinks": [
+      {
+        "href": "/#home",
+        "label": "Home"
+      },
+      {
+        "href": "/#services",
+        "label": "Services"
+      },
+      {
+        "href": "/#about",
+        "label": "About"
+      },
+      {
+        "href": "/#speciality",
+        "label": "Speciality"
+      },
+      {
+        "href": "/#testimonials",
+        "label": "Testimonials"
+      },
+      {
+        "href": "/#contact",
+        "label": "Contact"
+      }
+    ],
+    "dropdowns": [
+      {
+        "id": "shraadhiya",
+        "label": "Shraadhiya Karm",
+        "items": [
+          {
+            "label": "Gaya Pind",
+            "href": "/shraadhiya-karm#gaya-pind"
+          },
+          {
+            "label": "Varanasi Pind",
+            "href": "/shraadhiya-karm#varanasi-pind"
+          },
+          {
+            "label": "Mrityu Parant",
+            "href": "/shraadhiya-karm#mrityu-parant"
+          },
+          {
+            "label": "Shad Pind Daan (Asthi sanchayan)",
+            "href": "/shraadhiya-karm#shad-pind-daan-asthi-sanchayan"
+          },
+          {
+            "label": "Dashgaatra (Dashva)",
+            "href": "/shraadhiya-karm#dashgaatra-dashva"
+          },
+          {
+            "label": "Ekadashaah (11 din)",
+            "href": "/shraadhiya-karm#ekadashaah-11-din"
+          },
+          {
+            "label": "Dwadashah (12 din)",
+            "href": "/shraadhiya-karm#dwadashah-12-din"
+          },
+          {
+            "label": "Shaiyya Daan Brahman Bhoj",
+            "href": "/shraadhiya-karm#shaiyya-daan-brahman-bhoj"
+          },
+          {
+            "label": "Narayan Bali / Tripindi Shraadh",
+            "href": "/shraadhiya-karm#narayan-bali-tripindi-shraadh"
+          }
+        ]
+      },
+      {
+        "id": "karm-kaand",
+        "label": "Karm Kaand - Maanglik",
+        "items": [
+          {
+            "label": "Upnayan Janeu / Shaadi Vivaah",
+            "href": "/karm-kaand-maanglik#upanayan-janeu-shaadi-vivaah"
+          },
+          {
+            "label": "Bhoomi Pujan / Grih Pravesh",
+            "href": "/karm-kaand-maanglik#bhoomi-pujan-grih-pravesh"
+          },
+          {
+            "label": "Rudrabhishek / Maha Mrityunjay",
+            "href": "/karm-kaand-maanglik#rudrabhishek-maha-mrityunjay"
+          },
+          {
+            "label": "Ramayan / Bhagwad Katha",
+            "href": "/karm-kaand-maanglik#ramayan-bhagwad-katha"
+          },
+          {
+            "label": "Satchandi / Durga Paath",
+            "href": "/karm-kaand-maanglik#satchandi-durga-paath"
+          },
+          {
+            "label": "Gau Daan",
+            "href": "/karm-kaand-maanglik#gau-daan"
+          },
+          {
+            "label": "Other Hawan Pujan and Katha",
+            "href": "/karm-kaand-maanglik#other-hawan-pujan-and-katha"
+          }
+        ]
+      },
+      {
+        "id": "gallery",
+        "label": "Gallery",
+        "items": [
+          {
+            "label": "Photos",
+            "href": "/gallery#photos"
+          },
+          {
+            "label": "Videos",
+            "href": "/gallery#videos"
+          }
+        ]
+      }
+    ]
+  },
+  "cta": {
+    "ariaLabel": "Book a ritual",
+    "heading": "Plan your sacred ritual with Pandit Prashant Shukla in Varanasi",
+    "whatsappButton": "WhatsApp now"
+  },
+  "sticky": {
+    "whatsapp": "WhatsApp",
+    "callNow": "Call Now"
+  },
+  "footer": {
+    "quickLinksHeading": "Quick links",
+    "quickLinks": [
+      {
+        "label": "Home",
+        "href": "/#home"
+      },
+      {
+        "label": "Photo Gallery",
+        "href": "/gallery"
+      },
+      {
+        "label": "Shraadhiya Karm",
+        "href": "/shraadhiya-karm"
+      },
+      {
+        "label": "Contact",
+        "href": "/#contact"
+      }
+    ],
+    "servicesHeading": "Our services",
+    "getInTouchHeading": "Get in touch",
+    "whatsappLinkLabel": "WhatsApp",
+    "copyrightSuffix": "Digital services by Digital Dreamers Studio.",
+    "locationLine": "Naya Mahadev, Rajghat, Varanasi."
+  },
+  "common": {
+    "learnMore": "Learn More",
+    "backToHome": "← Back to Home",
+    "backToServices": "← Back to Divine Services"
+  },
+  "pages": {
+    "karmKaand": {
+      "sectionEyebrow": "Karm Kaand - Maanglik",
+      "title": "Karm Kaand — Maanglik",
+      "intro": "Auspicious lifecycle and worship rites in one place. Use the menu to jump here; the page scrolls to the matching section."
+    },
+    "shraadhiya": {
+      "sectionEyebrow": "Shraadhiya Karm",
+      "title": "Shraadhiya Karm",
+      "intro": "Shraddha and pitru karm guidance on one page. Use the menu to jump here; the page scrolls to the matching section."
+    },
+    "gallery": {
+      "eyebrow": "Sacred visuals",
+      "title": "Divine Moments",
+      "subtitle": "A visual journey through the ancient rituals and spiritual essence of Kashi.",
+      "photosTab": "Photos",
+      "videosTab": "Videos",
+      "emptyPhotos": "No photos in public/images/gallery yet. Add JPG or PNG files there to fill this grid.",
+      "emptyVideos": "No videos yet. Add YouTube embed URLs in gallery-media.data.ts.",
+      "footerTagline": "Sacred services in Varanasi",
+      "lightboxAriaLabel": "Enlarged gallery photo",
+      "closeAria": "Close"
+    }
+  }
+}

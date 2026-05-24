@@ -4,10 +4,10 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 import { createPortal } from "react-dom";
+import type { SiteCopy } from "@/lib/site-locale";
+import type { SiteLocale } from "@/lib/site-locale-constants";
 import { IconClose, IconHamburger } from "@/features/common/icons";
 import { LanguageSwitcher } from "@/features/navigation/LanguageSwitcher";
-import { SITE } from "@/config/site";
-import { navDropdowns, navFlatLinks } from "@/features/navigation/nav-menu.data";
 
 function Chevron({ open }: { open: boolean }) {
   return (
@@ -22,7 +22,13 @@ function Chevron({ open }: { open: boolean }) {
   );
 }
 
-export function MobileSiteHeader() {
+export function MobileSiteHeader({
+  copy,
+  locale,
+}: {
+  copy: SiteCopy;
+  locale: SiteLocale;
+}) {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
   const [expandedId, setExpandedId] = useState<string | null>(null);
@@ -93,11 +99,11 @@ export function MobileSiteHeader() {
         />
         <nav className="pointer-events-auto absolute right-0 top-0 z-[1] flex h-full w-[min(100%,22rem)] flex-col bg-kashi-cream shadow-xl">
           <div className="flex items-center justify-between border-b border-black/5 px-4 py-4">
-            <span className="font-serif text-lg font-semibold text-kashi-red">Menu</span>
+            <span className="font-serif text-lg font-semibold text-kashi-red">{copy.navigation.drawerTitle}</span>
             <button
               type="button"
               onClick={closeDrawer}
-              className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-lg max-md:active:bg-black/10 md:hover:bg-black/5"
+              className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-lg active:bg-black/10 hover:bg-black/5"
               aria-label="Close menu"
             >
               <IconClose className="pointer-events-none text-kashi-brown" />
@@ -105,7 +111,7 @@ export function MobileSiteHeader() {
           </div>
 
           <ul className="flex flex-1 flex-col gap-2 overflow-y-auto p-3 pb-8">
-            {navFlatLinks.slice(0, 1).map((link) => (
+            {copy.navigation.flatLinks.slice(0, 1).map((link) => (
               <li key={link.href}>
                 <Link
                   href={link.href}
@@ -117,7 +123,7 @@ export function MobileSiteHeader() {
               </li>
             ))}
 
-            {navDropdowns.map((group) => {
+            {copy.navigation.dropdowns.map((group) => {
               const isOpen = expandedId === group.id;
               return (
                 <li key={group.id} className="rounded-lg">
@@ -173,7 +179,7 @@ export function MobileSiteHeader() {
               );
             })}
 
-            {navFlatLinks.slice(1).map((link) => (
+            {copy.navigation.flatLinks.slice(1).map((link) => (
               <li key={link.href}>
                 <Link
                   href={link.href}
@@ -191,31 +197,46 @@ export function MobileSiteHeader() {
 
   return (
     <>
-      <header className="z-[100] isolate border-b border-black/5 bg-kashi-cream [touch-action:manipulation] max-md:fixed max-md:left-0 max-md:right-0 max-md:top-0 max-md:pt-[env(safe-area-inset-top,0px)] md:sticky md:top-0">
-        <div className="relative mx-auto grid h-[4.25rem] max-w-lg grid-cols-[minmax(0,1fr)_auto] items-center gap-3 px-4">
-          <div className="flex min-h-[4.25rem] min-w-0 items-center justify-start self-stretch">
+      <header className="z-[100] isolate border-b border-black/5 bg-kashi-cream [touch-action:manipulation] max-[999px]:fixed max-[999px]:left-0 max-[999px]:right-0 max-[999px]:top-0 max-[999px]:pt-[env(safe-area-inset-top,0px)] min-[1000px]:sticky min-[1000px]:top-0">
+        <div className="relative mx-auto grid h-[4.25rem] w-full max-w-none grid-cols-[minmax(0,1fr)_auto] items-center gap-3 px-4 min-[1000px]:h-[4.5rem] min-[1000px]:max-w-7xl min-[1000px]:grid-cols-[minmax(0,auto)_1fr_minmax(0,auto)] min-[1000px]:gap-6 min-[1000px]:px-8">
+          <div className="flex min-h-[4.25rem] min-w-0 items-center justify-start justify-self-start self-stretch min-[1000px]:min-h-[4.5rem]">
             <Link
               href="/#home"
-              lang="en"
+              lang={locale === "hi" ? "hi" : "en"}
               className="relative z-0 block w-fit max-w-full py-2 pr-1"
             >
               <div className="min-w-0 max-w-full leading-tight">
-                <span className="block truncate font-serif text-lg font-semibold text-kashi-red">
-                  {SITE.name}
+                <span className="block truncate font-serif text-lg font-semibold text-kashi-red min-[1000px]:text-xl">
+                  {copy.site.name}
                 </span>
                 <p className="line-clamp-2 text-[9px] font-semibold uppercase leading-snug tracking-wider text-kashi-gold sm:text-[10px]">
-                  {SITE.tagline}
+                  {copy.site.tagline}
                 </p>
               </div>
             </Link>
           </div>
 
-          <div className="relative z-20 flex shrink-0 items-center gap-2.5 [touch-action:manipulation]">
+          <nav
+            className="hidden min-w-0 flex-1 items-center justify-center gap-3 min-[1000px]:flex lg:gap-6"
+            aria-label="Primary"
+          >
+            {copy.navigation.desktop.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="whitespace-nowrap text-sm font-medium text-kashi-brown transition hover:text-kashi-red"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
+
+          <div className="relative z-20 flex shrink-0 items-center justify-self-end gap-2.5 [touch-action:manipulation] min-[1000px]:gap-3">
             <LanguageSwitcher />
             <button
               type="button"
               onClick={openMenu}
-              className="relative flex h-11 min-h-[44px] min-w-[44px] shrink-0 cursor-pointer items-center justify-center rounded-lg text-kashi-brown max-md:active:bg-black/15 md:hover:bg-black/5 touch-manipulation [-webkit-tap-highlight-color:transparent]"
+              className="relative flex h-11 min-h-[44px] min-w-[44px] shrink-0 cursor-pointer items-center justify-center rounded-lg text-kashi-brown max-[999px]:active:bg-black/15 min-[1000px]:hidden touch-manipulation [-webkit-tap-highlight-color:transparent]"
               aria-expanded={menuOpen}
               aria-controls="mobile-nav-drawer"
               aria-label="Open menu"
@@ -228,7 +249,7 @@ export function MobileSiteHeader() {
 
       <div
         aria-hidden
-        className="max-md:h-[calc(4.25rem+env(safe-area-inset-top,0px))] max-md:shrink-0 md:hidden"
+        className="max-[999px]:h-[calc(4.25rem+env(safe-area-inset-top,0px))] max-[999px]:shrink-0 min-[1000px]:hidden"
       />
 
       {drawer ? createPortal(drawer, document.body) : null}

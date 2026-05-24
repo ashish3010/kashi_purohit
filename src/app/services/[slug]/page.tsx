@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { SITE } from "@/config/site";
 import { MobileSiteHeader } from "@/features/navigation/MobileSiteHeader";
 import { SiteFooter } from "@/features/navigation/SiteFooter";
 import { StickyActionBar } from "@/features/navigation/StickyActionBar";
 import { getAllServiceSlugs, getServiceBySlug } from "@/features/services/service-queries";
 import { ServiceDetailContent } from "@/features/services/ServiceDetailContent";
+import { getRequestSiteLocale, getSiteCopy } from "@/lib/site-locale";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -17,7 +17,8 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const service = getServiceBySlug(slug);
+  const copy = getSiteCopy(await getRequestSiteLocale());
+  const service = getServiceBySlug(copy, slug);
   if (!service) {
     return { title: "Service" };
   }
@@ -26,7 +27,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     description: service.description,
     alternates: { canonical: `/services/${slug}` },
     openGraph: {
-      title: `${service.title} | ${SITE.name}`,
+      title: `${service.title} | ${copy.site.name}`,
       description: service.description,
       url: `/services/${slug}`,
       type: "article",
@@ -34,7 +35,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     },
     twitter: {
       card: "summary_large_image",
-      title: `${service.title} | ${SITE.name}`,
+      title: `${service.title} | ${copy.site.name}`,
       description: service.description,
       images: [service.imageSrc],
     },
@@ -43,19 +44,21 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function ServiceDetailPage({ params }: PageProps) {
   const { slug } = await params;
-  const service = getServiceBySlug(slug);
+  const locale = await getRequestSiteLocale();
+  const copy = getSiteCopy(locale);
+  const service = getServiceBySlug(copy, slug);
   if (!service) {
     notFound();
   }
 
   return (
     <div>
-      <MobileSiteHeader />
+      <MobileSiteHeader copy={copy} locale={locale} />
       <main>
-        <ServiceDetailContent service={service} />
-        <SiteFooter />
+        <ServiceDetailContent service={service} backLabel={copy.common.backToServices} />
+        <SiteFooter copy={copy} />
       </main>
-      <StickyActionBar />
+      <StickyActionBar copy={copy} />
     </div>
   );
 }

@@ -1,17 +1,18 @@
 import Link from "next/link";
+import type { SiteCopy } from "@/lib/site-locale";
 import { Container } from "@/features/common/Container";
 import { shraadhiyaSections } from "@/features/shraadhiya/shraadhiya-sections.data";
 
-const sectionEyebrow = "Shraadhiya Karm";
+export function ShraadhiyaKarmSections({ copy }: { copy: SiteCopy }) {
+  const sectionEyebrow = copy.pages.shraadhiya.sectionEyebrow;
 
-export function ShraadhiyaKarmSections() {
   return (
     <>
       {shraadhiyaSections.map((section, index) => (
         <section
           key={section.anchorId}
           id={section.anchorId}
-          className="scroll-mt-[5.5rem] pt-12 md:scroll-mt-24"
+          className="scroll-mt-[5.5rem] pt-12 min-[1000px]:scroll-mt-24"
         >
           <Container
             className={
@@ -34,21 +35,21 @@ export function ShraadhiyaKarmSections() {
   );
 }
 
-export function ShraadhiyaKarmIntro() {
+export function ShraadhiyaKarmIntro({ copy }: { copy: SiteCopy }) {
+  const p = copy.pages.shraadhiya;
+
   return (
     <Container className="pt-3 pb-6 sm:pt-4">
       <Link
         href="/#home"
         className="text-sm font-semibold text-kashi-red underline-offset-4 hover:underline"
       >
-        ← Back to Home
+        {copy.common.backToHome}
       </Link>
       <h1 className="mt-6 font-serif text-3xl font-bold leading-tight text-[#701a1a] sm:text-4xl">
-        Shraadhiya Karm
+        {p.title}
       </h1>
-      <p className="mt-8 text-base leading-relaxed text-neutral-700">
-        Shraddha and pitru karm guidance on one page. Use the menu to jump here; the page scrolls to the matching section.
-      </p>
+      <p className="mt-8 text-base leading-relaxed text-neutral-700">{p.intro}</p>
     </Container>
   );
 }

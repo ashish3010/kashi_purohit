@@ -1,33 +1,35 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
-import { SITE, SITE_LOGO_ALT, SITE_LOGO_PATH } from "@/config/site";
+import { SITE_LOGO_PATH } from "@/config/site";
 import { galleryYoutubeVideos } from "@/features/gallery/gallery-media.data";
 import { GalleryScreen } from "@/features/gallery/GalleryScreen";
 import { readLocalGalleryPhotos } from "@/features/gallery/readLocalGalleryPhotos";
 import { MobileSiteHeader } from "@/features/navigation/MobileSiteHeader";
 import { SiteFooter } from "@/features/navigation/SiteFooter";
 import { StickyActionBar } from "@/features/navigation/StickyActionBar";
+import { getRequestSiteLocale, getSiteCopy } from "@/lib/site-locale";
 
-export const metadata: Metadata = {
-  title: "Gallery — Divine Moments",
-  description:
-    "Photos and videos from rituals, ghats, and temple seva with Kashi Purohit in Varanasi — sacred visuals from the holy city.",
-  alternates: { canonical: "/gallery" },
-  openGraph: {
-    title: `Gallery — Divine Moments | ${SITE.name}`,
-    description:
-      "Photos and videos from rituals, ghats, and temple seva with Kashi Purohit in Varanasi — sacred visuals from the holy city.",
-    url: "/gallery",
-    images: [{ url: SITE_LOGO_PATH, width: 512, height: 512, alt: SITE_LOGO_ALT }],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: `Gallery — Divine Moments | ${SITE.name}`,
-    description:
-      "Photos and videos from rituals, ghats, and temple seva with Kashi Purohit in Varanasi.",
-    images: [SITE_LOGO_PATH],
-  },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const copy = getSiteCopy(await getRequestSiteLocale());
+  const g = copy.pages.gallery;
+  return {
+    title: `${g.title} — ${g.eyebrow}`,
+    description: g.subtitle,
+    alternates: { canonical: "/gallery" },
+    openGraph: {
+      title: `${g.title} — ${g.eyebrow} | ${copy.site.name}`,
+      description: g.subtitle,
+      url: "/gallery",
+      images: [{ url: SITE_LOGO_PATH, width: 512, height: 512, alt: copy.site.logoAlt }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${g.title} — ${g.eyebrow} | ${copy.site.name}`,
+      description: g.subtitle,
+      images: [SITE_LOGO_PATH],
+    },
+  };
+}
 
 function GalleryFallback() {
   return (
@@ -37,19 +39,21 @@ function GalleryFallback() {
   );
 }
 
-export default function GalleryPage() {
+export default async function GalleryPage() {
   const photos = readLocalGalleryPhotos();
+  const locale = await getRequestSiteLocale();
+  const copy = getSiteCopy(locale);
 
   return (
     <div className="min-h-screen">
-      <MobileSiteHeader />
+      <MobileSiteHeader copy={copy} locale={locale} />
       <main>
         <Suspense fallback={<GalleryFallback />}>
-          <GalleryScreen photos={photos} videos={galleryYoutubeVideos} />
+          <GalleryScreen copy={copy} photos={photos} videos={galleryYoutubeVideos} />
         </Suspense>
-        <SiteFooter />
+        <SiteFooter copy={copy} />
       </main>
-      <StickyActionBar />
+      <StickyActionBar copy={copy} />
     </div>
   );
 }

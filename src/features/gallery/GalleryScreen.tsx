@@ -10,6 +10,7 @@ import type {
   GalleryVideoItem,
 } from "@/features/gallery/gallery-media.data";
 import { GalleryVideo } from "@/features/gallery/GalleryVideo";
+import type { SiteCopy } from "@/lib/site-locale";
 
 type Tab = "photos" | "videos";
 
@@ -45,11 +46,12 @@ function setUrlForTab(next: Tab) {
 }
 
 type GalleryScreenProps = {
+  copy: SiteCopy;
   photos: GalleryPhotoItem[];
   videos: GalleryVideoItem[];
 };
 
-export function GalleryScreen({ photos, videos }: GalleryScreenProps) {
+export function GalleryScreen({ copy, photos, videos }: GalleryScreenProps) {
   const searchParams = useSearchParams();
   const queryTab = searchParams.get("tab");
   const locationHash = useSyncExternalStore(
@@ -82,6 +84,8 @@ export function GalleryScreen({ photos, videos }: GalleryScreenProps) {
     };
   }, [lightbox]);
 
+  const g = copy.pages.gallery;
+
   return (
     <div className="bg-kashi-cream pb-24 pt-6 md:pb-12">
       <Container className="max-w-lg">
@@ -89,22 +93,22 @@ export function GalleryScreen({ photos, videos }: GalleryScreenProps) {
           href="/#home"
           className="text-sm font-semibold text-kashi-red underline-offset-4 hover:underline"
         >
-          ← Back to Home
+          {copy.common.backToHome}
         </Link>
 
         <div className="mt-10 flex items-center gap-3">
           <span className="h-px flex-1 bg-kashi-gold/45" aria-hidden />
           <p className="shrink-0 text-center text-[11px] font-semibold uppercase tracking-[0.2em] text-kashi-gold">
-            Sacred visuals
+            {g.eyebrow}
           </p>
           <span className="h-px flex-1 bg-kashi-gold/45" aria-hidden />
         </div>
 
         <h1 className="mt-5 text-center font-serif text-3xl font-bold leading-tight text-kashi-red sm:text-4xl">
-          Divine Moments
+          {g.title}
         </h1>
         <p className="mx-auto mt-4 max-w-md text-center text-sm leading-relaxed text-neutral-600">
-          A visual journey through the ancient rituals and spiritual essence of Kashi.
+          {g.subtitle}
         </p>
 
         <div className="mt-8 flex justify-center gap-3">
@@ -117,7 +121,7 @@ export function GalleryScreen({ photos, videos }: GalleryScreenProps) {
                 : "bg-white/90 text-kashi-red ring-1 ring-kashi-red/25 hover:bg-white"
             }`}
           >
-            Photos
+            {g.photosTab}
           </button>
           <button
             type="button"
@@ -128,18 +132,14 @@ export function GalleryScreen({ photos, videos }: GalleryScreenProps) {
                 : "bg-white/90 text-kashi-red ring-1 ring-kashi-red/25 hover:bg-white"
             }`}
           >
-            Videos
+            {g.videosTab}
           </button>
         </div>
 
         {tab === "photos" ? (
           photos.length === 0 ? (
             <p className="mt-10 rounded-xl bg-white/60 px-4 py-8 text-center text-sm leading-relaxed text-neutral-600 ring-1 ring-black/5">
-              No photos in{" "}
-              <code className="rounded bg-kashi-cream px-1.5 py-0.5 text-xs text-kashi-brown">
-                public/images/gallery
-              </code>{" "}
-              yet. Add JPG or PNG files there to fill this grid.
+              {g.emptyPhotos}
             </p>
           ) : (
             <div className="mt-10 columns-2 gap-3 [column-fill:_balance]">
@@ -165,11 +165,7 @@ export function GalleryScreen({ photos, videos }: GalleryScreenProps) {
           )
         ) : videos.length === 0 ? (
           <p className="mt-10 rounded-xl bg-white/60 px-4 py-8 text-center text-sm leading-relaxed text-neutral-600 ring-1 ring-black/5">
-            No videos yet. Add YouTube embed URLs to{" "}
-            <code className="rounded bg-kashi-cream px-1.5 py-0.5 text-xs text-kashi-brown">
-              galleryYoutubeVideos
-            </code>{" "}
-            in <code className="rounded bg-kashi-cream px-1.5 py-0.5 text-xs text-kashi-brown">gallery-media.data.ts</code>.
+            {g.emptyVideos}
           </p>
         ) : (
           <div className="mt-10 grid grid-cols-1 gap-6">
@@ -184,9 +180,9 @@ export function GalleryScreen({ photos, videos }: GalleryScreenProps) {
         )}
 
         <div className="mt-14 border-t border-kashi-gold/25 pt-8 text-center">
-          <p className="font-serif text-xl font-semibold text-kashi-red">Kashi Purohit</p>
+          <p className="font-serif text-xl font-semibold text-kashi-red">{copy.site.name}</p>
           <p className="mt-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-neutral-500">
-            Sacred services in Varanasi
+            {g.footerTagline}
           </p>
         </div>
       </Container>
@@ -196,7 +192,7 @@ export function GalleryScreen({ photos, videos }: GalleryScreenProps) {
           className="fixed inset-0 z-[100] flex items-center justify-center bg-black/85 p-4 pt-14"
           role="dialog"
           aria-modal="true"
-          aria-label="Enlarged gallery photo"
+          aria-label={g.lightboxAriaLabel}
           onClick={() => setLightbox(null)}
         >
           <button
@@ -206,7 +202,7 @@ export function GalleryScreen({ photos, videos }: GalleryScreenProps) {
               setLightbox(null);
             }}
             className="absolute right-3 top-3 z-[101] flex h-11 w-11 items-center justify-center rounded-full bg-white text-kashi-brown shadow-lg ring-1 ring-black/15 hover:bg-kashi-cream"
-            aria-label="Close"
+            aria-label={g.closeAria}
           >
             <IconClose className="h-6 w-6" />
           </button>

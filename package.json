@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "sync:en": "cp src/content/en.json public/static/config/en.json && cp src/content/hi.json public/static/config/hi.json"
   },
   "dependencies": {
     "next": "16.2.6",

@@ -1,9 +1,16 @@
-import { getSiteUrl, SITE, SITE_ADDRESS, SITE_CONTACT, SITE_LOGO_PATH } from "@/config/site";
+import {
+  getSiteUrl,
+  SITE_ADDRESS,
+  SITE_CONTACT,
+  SITE_LOGO_PATH,
+} from "@/config/site";
+import type { SiteCopy } from "@/lib/site-locale";
 
 /** Organization + local business structured data for rich results. */
-export function JsonLd() {
+export function JsonLd({ copy }: { copy: SiteCopy }) {
   const base = getSiteUrl();
   const logoUrl = `${base}${SITE_LOGO_PATH}`;
+  const { site } = copy;
 
   const graph = {
     "@context": "https://schema.org",
@@ -11,9 +18,9 @@ export function JsonLd() {
       {
         "@type": "ProfessionalService",
         "@id": `${base}/#business`,
-        name: SITE.name,
-        alternateName: SITE.tagline,
-        description: SITE.description,
+        name: site.name,
+        alternateName: site.tagline,
+        description: site.description,
         url: base,
         image: logoUrl,
         logo: logoUrl,
