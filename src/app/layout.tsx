@@ -31,8 +31,6 @@ export async function generateMetadata(): Promise<Metadata> {
   const copy = getSiteCopy(locale);
   const { site } = copy;
   const htmlLang = locale === "hi" ? "hi" : "en";
-  const googleVerification = process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION?.trim();
-
   return {
     metadataBase: new URL(getSiteUrl()),
     title: {
@@ -90,9 +88,9 @@ export async function generateMetadata(): Promise<Metadata> {
       email: true,
       address: true,
     },
-    ...(googleVerification
-      ? { verification: { google: googleVerification } }
-      : {}),
+    verification: {
+      google: "5kJCmgDaAnqLgqVX7DMp_6efD1MBZ1ffHL_YKIzzaQY",
+    },
     other: {
       "geo.region": "IN-UP",
       "geo.placename": "Varanasi",
