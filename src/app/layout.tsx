@@ -1,7 +1,16 @@
 import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 import { JsonLd } from "./JsonLd";
-import { getSiteUrl, SITE_LOGO_PATH } from "@/config/site";
+import {
+  getSiteUrl,
+  SITE_GEO,
+  SITE_LOGO_PATH,
+  SITE_OG_IMAGE_HEIGHT,
+  SITE_OG_IMAGE_PATH,
+  SITE_OG_IMAGE_WIDTH,
+  SITE_SEO_KEYWORDS,
+} from "@/config/site";
+import { languageAlternates } from "@/lib/seo";
 import { getRequestSiteLocale, getSiteCopy } from "@/lib/site-locale";
 import "./globals.css";
 
@@ -22,6 +31,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const copy = getSiteCopy(locale);
   const { site } = copy;
   const htmlLang = locale === "hi" ? "hi" : "en";
+  const googleVerification = process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION?.trim();
 
   return {
     metadataBase: new URL(getSiteUrl()),
@@ -35,25 +45,22 @@ export async function generateMetadata(): Promise<Metadata> {
     creator: site.name,
     publisher: site.name,
     category: "religion",
-    keywords: [
-      "Kashi Purohit",
-      "Varanasi pandit",
-      "Banaras purohit",
-      "Naya Mahadev Rajghat",
-      "Vedic rituals",
-      "Hawan Varanasi",
-      "Karm kaand",
-      "Shraddha Gaya",
-      "Pind daan Kashi",
-      "Upanayan sanskar",
-      "Hindu wedding rituals",
-      "Rudrabhishek",
-      "Bhagwat katha",
-    ],
+    keywords: [...SITE_SEO_KEYWORDS],
+    alternates: languageAlternates("/"),
     robots: {
       index: true,
       follow: true,
-      googleBot: { index: true, follow: true },
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+        "max-video-preview": -1,
+      },
+    },
+    icons: {
+      icon: SITE_LOGO_PATH,
+      apple: SITE_LOGO_PATH,
     },
     openGraph: {
       type: "website",
@@ -64,10 +71,10 @@ export async function generateMetadata(): Promise<Metadata> {
       description: site.description,
       images: [
         {
-          url: SITE_LOGO_PATH,
-          width: 512,
-          height: 512,
-          alt: site.logoAlt,
+          url: SITE_OG_IMAGE_PATH,
+          width: SITE_OG_IMAGE_WIDTH,
+          height: SITE_OG_IMAGE_HEIGHT,
+          alt: copy.hero.imageAlt,
           type: "image/png",
         },
       ],
@@ -76,12 +83,21 @@ export async function generateMetadata(): Promise<Metadata> {
       card: "summary_large_image",
       title: `${site.name} — ${site.tagline}`,
       description: site.description,
-      images: [SITE_LOGO_PATH],
+      images: [SITE_OG_IMAGE_PATH],
     },
     formatDetection: {
       telephone: true,
       email: true,
       address: true,
+    },
+    ...(googleVerification
+      ? { verification: { google: googleVerification } }
+      : {}),
+    other: {
+      "geo.region": "IN-UP",
+      "geo.placename": "Varanasi",
+      "geo.position": `${SITE_GEO.latitude};${SITE_GEO.longitude}`,
+      ICBM: `${SITE_GEO.latitude}, ${SITE_GEO.longitude}`,
     },
   };
 }

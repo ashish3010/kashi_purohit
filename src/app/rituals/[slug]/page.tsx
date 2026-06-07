@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { SITE_LOGO_PATH } from "@/config/site";
+import { JsonLdScript } from "@/app/JsonLdScript";
 import { ArticleDetailContent } from "@/features/common/ArticleDetailContent";
 import { MobileSiteHeader } from "@/features/navigation/MobileSiteHeader";
 import {
@@ -9,6 +9,7 @@ import {
 } from "@/features/navigation/menu-detail-queries";
 import { SiteFooter } from "@/features/navigation/SiteFooter";
 import { StickyActionBar } from "@/features/navigation/StickyActionBar";
+import { buildBreadcrumbJsonLd, buildPageMetadata } from "@/lib/seo";
 import { getRequestSiteLocale, getSiteCopy } from "@/lib/site-locale";
 
 type PageProps = {
@@ -26,23 +27,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!item) {
     return { title: "Gallery" };
   }
-  return {
+  return buildPageMetadata({
     title: item.title,
     description: item.description,
-    alternates: { canonical: `/rituals/${slug}` },
-    openGraph: {
-      title: `${item.title} | ${copy.site.name}`,
-      description: item.description,
-      url: `/rituals/${slug}`,
-      images: [{ url: SITE_LOGO_PATH, width: 512, height: 512, alt: copy.site.logoAlt }],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: `${item.title} | ${copy.site.name}`,
-      description: item.description,
-      images: [SITE_LOGO_PATH],
-    },
-  };
+    path: `/rituals/${slug}`,
+    type: "article",
+  });
 }
 
 export default async function MenuDetailPage({ params }: PageProps) {
@@ -54,8 +44,15 @@ export default async function MenuDetailPage({ params }: PageProps) {
     notFound();
   }
 
+  const breadcrumb = buildBreadcrumbJsonLd([
+    { name: copy.navigation.desktop[0]?.label ?? "Home", path: "/" },
+    { name: item.sectionLabel, path: `/#${item.sectionLabel.toLowerCase().replace(/\s+/g, "-")}` },
+    { name: item.title, path: `/rituals/${slug}` },
+  ]);
+
   return (
     <div>
+      <JsonLdScript data={breadcrumb} />
       <MobileSiteHeader copy={copy} locale={locale} />
       <main>
         <ArticleDetailContent

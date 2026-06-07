@@ -8,17 +8,15 @@ import { StickyActionBar } from "@/features/navigation/StickyActionBar";
 import { ServicesSection } from "@/features/services/ServicesSection";
 import { SpecialitySection } from "@/features/speciality/SpecialitySection";
 import { TestimonialsSection } from "@/features/testimonials/TestimonialsSection";
+import { buildPageMetadata } from "@/lib/seo";
 import { getRequestSiteLocale, getSiteCopy } from "@/lib/site-locale";
 
 export async function generateMetadata(): Promise<Metadata> {
   const copy = getSiteCopy(await getRequestSiteLocale());
-  return {
-    alternates: { canonical: "/" },
-    openGraph: { url: "/" },
-    twitter: {
-      title: `${copy.site.name} — ${copy.site.tagline}`,
-    },
-  };
+  return buildPageMetadata({
+    description: copy.site.description,
+    path: "/",
+  });
 }
 
 export default async function Home() {

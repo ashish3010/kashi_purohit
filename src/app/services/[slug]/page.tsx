@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { JsonLdScript } from "@/app/JsonLdScript";
 import { MobileSiteHeader } from "@/features/navigation/MobileSiteHeader";
 import { SiteFooter } from "@/features/navigation/SiteFooter";
 import { StickyActionBar } from "@/features/navigation/StickyActionBar";
 import { getAllServiceSlugs, getServiceBySlug } from "@/features/services/service-queries";
 import { ServiceDetailContent } from "@/features/services/ServiceDetailContent";
+import { buildBreadcrumbJsonLd, buildPageMetadata, buildServiceJsonLd } from "@/lib/seo";
 import { getRequestSiteLocale, getSiteCopy } from "@/lib/site-locale";
 
 type PageProps = {
@@ -22,24 +24,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!service) {
     return { title: "Service" };
   }
-  return {
+  return buildPageMetadata({
     title: service.title,
     description: service.description,
-    alternates: { canonical: `/services/${slug}` },
-    openGraph: {
-      title: `${service.title} | ${copy.site.name}`,
-      description: service.description,
-      url: `/services/${slug}`,
-      type: "article",
-      images: [{ url: service.imageSrc, alt: service.imageAlt }],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: `${service.title} | ${copy.site.name}`,
-      description: service.description,
-      images: [service.imageSrc],
-    },
-  };
+    path: `/services/${slug}`,
+    image: { url: service.imageSrc, alt: service.imageAlt },
+    type: "article",
+  });
 }
 
 export default async function ServiceDetailPage({ params }: PageProps) {
@@ -51,8 +42,23 @@ export default async function ServiceDetailPage({ params }: PageProps) {
     notFound();
   }
 
+  const breadcrumb = buildBreadcrumbJsonLd([
+    { name: copy.navigation.desktop[0]?.label ?? "Home", path: "/" },
+    { name: copy.services.section.title, path: "/#services" },
+    { name: service.title, path: `/services/${slug}` },
+  ]);
+
+  const serviceSchema = buildServiceJsonLd({
+    name: service.title,
+    description: service.description,
+    path: `/services/${slug}`,
+    imageUrl: service.imageSrc,
+    providerName: copy.site.name,
+  });
+
   return (
     <div>
+      <JsonLdScript data={[breadcrumb, serviceSchema]} />
       <MobileSiteHeader copy={copy} locale={locale} />
       <main>
         <ServiceDetailContent service={service} backLabel={copy.common.backToServices} />
