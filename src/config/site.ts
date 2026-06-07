@@ -1,5 +1,5 @@
 /** Canonical production host — all other domains redirect here. */
-export const CANONICAL_HOST = "www.kashipurohit.in";
+export const CANONICAL_HOST = "www.kashipurohit.com";
 
 /** Canonical site origin for metadata, sitemap, robots, and JSON-LD. */
 export const CANONICAL_SITE_URL = `https://${CANONICAL_HOST}`;
@@ -7,8 +7,8 @@ export const CANONICAL_SITE_URL = `https://${CANONICAL_HOST}`;
 /** Alternate domains that should 301 to the canonical host. */
 export const ALTERNATE_HOSTS = [
   "kashipurohit.in",
+  "www.kashipurohit.in",
   "kashipurohit.com",
-  "www.kashipurohit.com",
 ] as const;
 
 export function getSiteUrl(): string {
